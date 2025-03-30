@@ -8,13 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const originalUrlElement = document.getElementById('original-url');
     const pageTitleElement = document.getElementById('page-title');
 
-    const normalizeUrl = (inputUrl) => {
-        if (!/^https?:\/\//i.test(inputUrl)) {
-            inputUrl = inputUrl.replace(/^\/+/, '');
-            return `http://${inputUrl}`;
-        };
-        return inputUrl;
-    }
+    const normalizeUrl = (inputUrl) => 
+        /^https?:\/\//i.test(inputUrl) ? inputUrl : `http://${inputUrl}`;
+
 
     urlForm.addEventListener('submit', async (e) => {
         e.preventDefault();
