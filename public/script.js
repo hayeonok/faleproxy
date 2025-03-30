@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const urlForm = document.getElementById('url-form');
     const urlInput = document.getElementById('url-input');
+    urlInput.type = "text";
     const loadingElement = document.getElementById('loading');
     const errorMessage = document.getElementById('error-message');
     const resultContainer = document.getElementById('result-container');
