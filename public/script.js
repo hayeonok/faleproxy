@@ -10,10 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const normalizeUrl = (inputUrl) => {
         if (!/^https?:\/\//i.test(inputUrl)) {
-          return `http://${inputUrl}`;
-        }
+            inputUrl = inputUrl.replace(/^\/+/, '');
+            return `http://${inputUrl}`;
+        };
         return inputUrl;
-      };
+    }
 
     urlForm.addEventListener('submit', async (e) => {
         e.preventDefault();
