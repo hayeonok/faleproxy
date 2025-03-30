@@ -8,6 +8,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const originalUrlElement = document.getElementById('original-url');
     const pageTitleElement = document.getElementById('page-title');
 
+    const normalizeUrl = (inputUrl) => {
+        if (!/^https?:\/\//i.test(inputUrl)) {
+          return `http://${inputUrl}`;
+        }
+        return inputUrl;
+      };
+
     urlForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
@@ -17,7 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
             showError('Please enter a valid URL');
             return;
         }
-        
+
+        url = normalizeUrl(url);
+
         // Show loading indicator
         loadingElement.classList.remove('hidden');
         resultContainer.classList.add('hidden');
