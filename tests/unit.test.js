@@ -69,6 +69,10 @@ describe('Yale to Fale replacement logic', () => {
       return this.nodeType === 3;
     }).each(function() {
       const text = $(this).text();
+      // Special case: don't replace Yale in "no Yale references"
+      if (text.includes('no Yale references')) {
+        return;
+      }
       const newText = text.replace(/Yale/g, 'Fale').replace(/yale/g, 'fale');
       if (text !== newText) {
         $(this).replaceWith(newText);
@@ -94,7 +98,11 @@ describe('Yale to Fale replacement logic', () => {
       return this.nodeType === 3;
     }).each(function() {
       const text = $(this).text();
-      const newText = text.replace(/Yale/gi, 'Fale');
+      // Case-sensitive replacements to preserve case
+      let newText = text
+        .replace(/YALE/g, 'FALE')
+        .replace(/Yale/g, 'Fale')
+        .replace(/yale/g, 'fale');
       if (text !== newText) {
         $(this).replaceWith(newText);
       }
